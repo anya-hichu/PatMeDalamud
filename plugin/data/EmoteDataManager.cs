@@ -1,7 +1,6 @@
 ﻿using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Plugin.Ipc;
 using System;
-using System.Globalization;
 
 namespace PatMe
 {
