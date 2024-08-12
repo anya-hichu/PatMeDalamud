@@ -1,5 +1,7 @@
 ﻿using Dalamud.Game.ClientState.Objects.SubKinds;
+using Dalamud.Plugin.Ipc;
 using System;
+using System.Globalization;
 
 namespace PatMe
 {
@@ -31,7 +33,7 @@ namespace PatMe
             OnOwnerChanged();
         }
 
-        public void OnEmote(IPlayerCharacter instigator, ushort emoteId)
+        public void OnEmote(IPlayerCharacter instigator, ushort emoteId, ICallGateProvider<string, uint, object?> counterChanged)
         {
             UpdateOwner();
             var needsSave = false;
@@ -43,7 +45,7 @@ namespace PatMe
                 {
                     continue;
                 }
-
+                counterChanged.SendMessage(counter.Name, counter.Value);
                 needsSave = true;
             }
 

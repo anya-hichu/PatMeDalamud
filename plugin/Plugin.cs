@@ -2,6 +2,7 @@
 using Dalamud.Interface.Windowing;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Ipc;
 using Dalamud.Plugin.Services;
 using System.Collections.Generic;
 
@@ -18,6 +19,7 @@ namespace PatMe
         private UIReaderBannerMIP uiReaderBannerMIP;
         private PluginWindowConfig windowConfig;
         private PluginWindowCounter windowCounters;
+        private readonly ICallGateProvider<string, uint, object?> counterChanged;
 
         [PluginService] internal static IDalamudPluginInterface pluginInterface { get; private set; } = null!;
 
@@ -51,8 +53,9 @@ namespace PatMe
             pluginInterface.UiBuilder.OpenConfigUi += OnOpenConfig;
             pluginInterface.UiBuilder.OpenMainUi += () => windowCounters.Toggle();
 
+            counterChanged = pluginInterface.GetIpcProvider<string, uint, object?>("PatMe.CounterChanged");
             emoteReader = new EmoteReaderHooks();
-            emoteReader.OnEmote += (instigator, emoteId) => emoteDataManager.OnEmote(instigator as IPlayerCharacter, emoteId);
+            emoteReader.OnEmote += (instigator, emoteId) => emoteDataManager.OnEmote(instigator as IPlayerCharacter, emoteId, counterChanged);
 
             Service.framework.Update += Framework_Update;
             Service.clientState.TerritoryChanged += ClientState_TerritoryChanged;
