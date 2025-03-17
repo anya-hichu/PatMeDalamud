@@ -28,7 +28,7 @@ jobs:
         run: dotnet restore
 
       - name: Build Project
-        run: dotnet build --configuration Release PatMeDalamud/PatMeDalamud.csproj -p:AssemblyVersion=${{ github.ref_name }}
+        run: dotnet build --configuration Release PatMeDalamud/PatMe.csproj -p:AssemblyVersion=${{ github.ref_name }}
 
       - name: Create Release
         uses: actions/create-release@v1

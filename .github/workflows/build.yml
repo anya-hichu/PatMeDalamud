@@ -29,7 +29,7 @@ jobs:
         run: dotnet restore
 
       - name: Build Project
-        run: dotnet build --configuration Release PatMeDalamud/PatMeDalamud.csproj
+        run: dotnet build --configuration Release PatMeDalamud/PatMe.csproj
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
