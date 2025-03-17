@@ -18,7 +18,7 @@ namespace PatMe
         {
             try
             {
-                hookEmote = Service.sigScanner.HookFromSignature<OnEmoteFuncDelegate>("40 53 56 41 54 41 57 48 83 EC ?? 48 8B 02", OnEmoteDetour);
+                hookEmote = Service.sigScanner.HookFromSignature<OnEmoteFuncDelegate>("E8 ?? ?? ?? ?? 48 8D 8B ?? ?? ?? ?? 4C 89 74 24", OnEmoteDetour);
                 hookEmote.Enable();
 
                 IsValid = true;
@@ -47,11 +47,11 @@ namespace PatMe
                     var instigatorOb = Service.objectTable.FirstOrDefault(x => (ulong)x.Address == instigatorAddr) as IPlayerCharacter;
                     if (instigatorOb != null)
                     {
-                        bool canCount = (instigatorOb.ObjectIndex != targetId);
+                        bool canCountIsIncorrectButFuckIt = (instigatorOb.ObjectIndex != targetId);
 #if DEBUG
-                        canCount = true;
+                        canCountIsIncorrectButFuckIt = true;
 #endif 
-                        if (canCount)
+                        if (canCountIsIncorrectButFuckIt)
                         {
                             OnEmote?.Invoke(instigatorOb, emoteId);
                         }
