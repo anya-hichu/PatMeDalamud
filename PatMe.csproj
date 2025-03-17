@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="Dalamud.Plugin.Bootstrap.targets"/>      
+	<Import Project="Dalamud.Plugin.Bootstrap.targets" />      
 
   <PropertyGroup>
     <Authors>MgAl2O4</Authors>
@@ -7,6 +7,7 @@
     <Description>Pat counter</Description>
     <Copyright>(c) 2024 MgAl2O4</Copyright>
     <PackageProjectUrl>https://github.com/MgAl2O4/PatMeDalamud</PackageProjectUrl>
+    <TargetFramework>net9.0-windows7.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
